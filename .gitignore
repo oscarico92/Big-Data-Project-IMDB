@@ -1,0 +1,17 @@
+# datasets are downloaded and rebuilt by the jobs (see PROJECT.md)
+data/
+!data/.gitkeep
+
+# python / jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# pywikibot files created by the streaming producer
+throttle.ctrl
+apicache*/
+logs/

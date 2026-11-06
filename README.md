@@ -1,4 +1,4 @@
-# ECE_ing5_Gr02_Big_Data_project
+# Big Data Project IMDB
 
 IMDb analysis with Apache Spark (batch and Structured Streaming) and Apache Kafka, for the ECE ING5 Big Data Processing course (fall 2026), group gr-02.
 
