@@ -35,8 +35,10 @@ docker exec pyspark_notebook python jobs/01_download_imdb.py
 
 ### 3. Convert it to Parquet (bronze layer)
 
+The jobs that use Spark are started with `spark-submit`: in the `pyspark-notebook` image, PySpark is only importable from the notebooks or through `spark-submit`, not from a plain `python` command. Expect 10 to 20 minutes (the `.gz` files are read on a single core).
+
 ```bash
-docker exec pyspark_notebook python jobs/02_raw_to_bronze.py
+docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bronze.py
 ```
 
 ### 4. Run the notebooks in order

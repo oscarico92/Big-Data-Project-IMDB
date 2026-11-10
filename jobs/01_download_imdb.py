@@ -1,6 +1,7 @@
 """Download the IMDb non-commercial datasets into data/raw/.
 
-Usage (inside the pyspark_notebook container, from /home/jovyan/work):
+Usage (from the root of the repository, Spark is not needed):
+    docker exec pyspark_notebook python jobs/01_download_imdb.py
     python jobs/01_download_imdb.py            # skip files already there
     python jobs/01_download_imdb.py --force    # download everything again
 
@@ -14,7 +15,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATASETS, IMDB_BASE_URL, RAW_DIR  # noqa: E402
+from config import DATASETS, IMDB_BASE_URL, RAW_DIR  # noqa: E402
 
 
 def download(name, force=False):
