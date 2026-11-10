@@ -72,6 +72,9 @@ def get_spark(app_name="imdb_project", driver_memory="4g", with_kafka=False):
         .config("spark.driver.memory", driver_memory)
         .config("spark.sql.shuffle.partitions", "16")
         .config("spark.sql.session.timeZone", "UTC")
+        # data/ is a Windows folder mounted in Docker: reads are slow, and the
+        # vectored Parquet reader times out (300 s) on big row groups
+        .config("spark.hadoop.parquet.hadoop.vectored.io.enabled", "false")
     )
     if with_kafka:
         import pyspark
