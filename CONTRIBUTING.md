@@ -36,5 +36,6 @@ git push -u origin feature/exploration-genre-runtime
 ## Shared conventions
 
 - Read the data with `read_bronze()` / `read_silver()` from `jobs/common.py`, never with hard-coded paths.
-- "Movie" = `titleType == "movie"`; "feature-length" = to be defined once in data preparation and reused everywhere.
+- Use the **silver** layer (`read_silver`), never bronze, in exploration and enrichment.
+- "Movie" = `is_movie` (`titleType == "movie"`); "feature-length film" = `is_feature_film` (movie with `runtimeMinutes > 40`). Both columns are in silver `title.basics`.
 - Before pushing a notebook, run it from top to bottom so the outputs in Git match the code.
