@@ -3,22 +3,16 @@
 Every notebook and job imports this module, so the whole team reads the data
 with the same schemas and from the same folders.
 """
-import os
-from pathlib import Path
-
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (
     DoubleType, IntegerType, StringType, StructField, StructType,
 )
 
-# data/ lives at the root of the repository (mounted in the container)
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = Path(os.environ.get("IMDB_DATA_DIR", PROJECT_ROOT / "data"))
-RAW_DIR = DATA_DIR / "raw"        # original .tsv.gz files from IMDb
-BRONZE_DIR = DATA_DIR / "bronze"  # same data, typed, as Parquet
-SILVER_DIR = DATA_DIR / "silver"  # cleaned data (data preparation section)
-
-IMDB_BASE_URL = "https://datasets.imdbws.com"
+# paths and dataset names live in config.py (no pyspark needed there)
+from config import (  # noqa: F401  (re-exported for the notebooks)
+    BRONZE_DIR, DATA_DIR, DATASETS, IMDB_BASE_URL, PROJECT_ROOT, RAW_DIR,
+    SILVER_DIR,
+)
 
 
 def _schema(*fields):
@@ -61,15 +55,16 @@ ARRAY_COLUMNS = {
     "name.basics": ["primaryProfession", "knownForTitles"],
 }
 
-DATASETS = list(SCHEMAS)
+assert set(SCHEMAS) == set(DATASETS)
 
 
 def get_spark(app_name="imdb_project", driver_memory="4g", with_kafka=False):
     """Create (or get) the Spark session used by every notebook and job.
 
     In local mode the driver also runs the tasks, so driver_memory is the
-    memory available to Spark. It is only applied if no session exists yet
-    (restart the kernel to change it).
+    memory available to Spark. It is only applied when the JVM is started by
+    this call (in a notebook: restart the kernel to change it; with
+    spark-submit: use the --driver-memory option instead).
     """
     builder = (
         SparkSession.builder

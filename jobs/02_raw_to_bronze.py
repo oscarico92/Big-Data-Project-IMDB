@@ -1,8 +1,9 @@
 """Convert the raw IMDb .tsv.gz files into typed Parquet tables (bronze layer).
 
-Usage (inside the pyspark_notebook container, from /home/jovyan/work):
-    python jobs/02_raw_to_bronze.py                    # all tables
-    python jobs/02_raw_to_bronze.py title.ratings      # only some tables
+Usage (spark-submit sets up pyspark, a plain `python` cannot import it in the
+pyspark-notebook image):
+    docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bronze.py
+    docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bronze.py title.ratings
 
 What it does, and nothing more (cleaning is done in the data preparation
 section, on top of this layer):
