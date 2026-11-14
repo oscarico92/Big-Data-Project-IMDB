@@ -58,17 +58,22 @@ ARRAY_COLUMNS = {
 assert set(SCHEMAS) == set(DATASETS)
 
 
-def get_spark(app_name="imdb_project", driver_memory="4g", with_kafka=False):
+def get_spark(app_name="imdb_project", driver_memory="4g", with_kafka=False, cores=None):
     """Create (or get) the Spark session used by every notebook and job.
 
     In local mode the driver also runs the tasks, so driver_memory is the
     memory available to Spark. It is only applied when the JVM is started by
     this call (in a notebook: restart the kernel to change it; with
     spark-submit: use the --driver-memory option instead).
+
+    cores limits the number of tasks running at the same time (local[cores]).
+    Fewer cores = less memory used at once, which avoids the JVM being killed
+    when Docker has little RAM (each Parquet writer buffers ~128 MB).
     """
     builder = (
         SparkSession.builder
         .appName(app_name)
+        .master(f"local[{cores}]" if cores else "local[*]")
         .config("spark.driver.memory", driver_memory)
         .config("spark.sql.shuffle.partitions", "16")
         .config("spark.sql.session.timeZone", "UTC")
