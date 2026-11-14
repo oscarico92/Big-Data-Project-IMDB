@@ -51,6 +51,17 @@ docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bron
 | `notebooks/04_streaming.ipynb` | Streaming (see `streaming/` for the producer) |
 | `notebooks/05_open_question.ipynb` | Open question |
 
+### 5. Streaming test window
+
+The producer runs on the host (like in lab 5) and needs `pip install pywikibot confluent-kafka`.
+
+1. Create the topic once: `python streaming/admin.py`
+2. Run `notebooks/04_streaming.ipynb` down to the cell **Start the streaming queries**.
+3. In a terminal, from the project folder: `python streaming/wikistream_producer.py --minutes 25`
+4. The notebook stops the queries after `RUN_MINUTES` (25) and shows the results (`results/streaming/`).
+
+By default 3 % of the events are held back 12 minutes by the producer (`--late-ratio`, `--late-minutes`) to test the late data handling.
+
 ### Data layout
 
 | Folder | Content | Produced by |
@@ -58,6 +69,7 @@ docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bron
 | `data/raw/` | original `.tsv.gz` files | `jobs/01_download_imdb.py` |
 | `data/bronze/<table>/` | same data, typed Parquet (`\N` -> null, lists -> arrays) | `jobs/02_raw_to_bronze.py` |
 | `data/silver/<table>/` | cleaned tables | `notebooks/01_data_preparation.ipynb` |
+| `data/streaming/` | IMDb lookup table, matched Wikipedia changes, window counts | `notebooks/04_streaming.ipynb` |
 
 Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silver()`), so the schemas and paths are the same for everyone.
 
@@ -65,7 +77,7 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 
 | Tool | Used by | Tasks |
 |---|---|---|
-| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates |
+| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`) |
 | TODO | TODO | TODO |
 
 No AI tool was used to write the explanations or reasoning in `REPORT.md`.
