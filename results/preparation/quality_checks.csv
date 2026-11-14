@@ -1,0 +1,37 @@
+table,check,rows
+name.basics,deathYear < birthYear,28
+name.basics,lifespan > 120 years,2
+name.basics,birthYear > 2026,0
+name.basics,deathYear > 2026,0
+name.basics,no deathYear and born more than 120 years ago,2793
+title.principals,credited on a title released before their birth,3101
+title.principals,credited > 2 years after death (excluding archive_*),240345
+title.basics,"startYear > 2026 (announced, not released)",6017
+title.basics,startYear < 1874,0
+title.basics,endYear < startYear,0
+title.basics,endYear set on a non-series title,0
+title.basics,runtimeMinutes <= 0,4
+title.basics,runtimeMinutes > 600,1133
+title.basics,"isAdult not in (0, 1)",0
+title.basics,more than 3 genres,0
+title.ratings,"averageRating outside [1, 10]",0
+title.ratings,numVotes <= 0,0
+title.episode,seasonNumber or episodeNumber missing,2120177
+title.episode,parent is not a series,0
+title.basics,duplicated tconst,0
+name.basics,duplicated nconst,0
+title.ratings,duplicated tconst,0
+title.episode,duplicated tconst,0
+title.crew,duplicated tconst,0
+title.principals,"duplicated (tconst, ordering)",0
+title.akas,"duplicated (titleId, ordering)",0
+title.ratings,tconst -> title.basics: missing parent,0
+title.akas,titleId -> title.basics: missing parent,2
+title.crew,tconst -> title.basics: missing parent,30
+title.crew,directors -> name.basics: missing parent,423
+title.crew,writers -> name.basics: missing parent,1149
+title.episode,tconst -> title.basics: missing parent,0
+title.episode,parentTconst -> title.basics: missing parent,5
+title.principals,tconst -> title.basics: missing parent,0
+title.principals,nconst -> name.basics: missing parent,8441
+name.basics,knownForTitles -> title.basics: missing parent,69
