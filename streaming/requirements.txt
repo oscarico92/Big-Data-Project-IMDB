@@ -1,0 +1,5 @@
+# host-side requirements of the streaming producer (python streaming/wikistream_producer.py)
+# same versions as in lab 5
+confluent-kafka==2.15.1
+pywikibot==11.8.0
+requests-sse==0.5.3

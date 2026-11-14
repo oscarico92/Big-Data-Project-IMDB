@@ -53,7 +53,13 @@ docker exec pyspark_notebook spark-submit --driver-memory 4g jobs/02_raw_to_bron
 
 ### 5. Streaming test window
 
-The producer runs on the host (like in lab 5) and needs `pip install pywikibot confluent-kafka`.
+The producer runs on the host (like in lab 5), in a virtual environment (Windows PowerShell):
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r streaming/requirements.txt
+```
 
 1. Create the topic once: `python streaming/admin.py`
 2. Run `notebooks/04_streaming.ipynb` down to the cell **Start the streaming queries**.
