@@ -83,8 +83,9 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 
 | Tool | Used by | Tasks |
 |---|---|---|
-| OpenAI Codex | Hugo BASSAGET | Implementation and debugging of repeated actor-director collaboration analysis and notebook 05 |
-| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton, notebook templates; code of the data preparation notebook |
-| Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb'|
+| OpenAI Codex | Hugo BASSAGET | Implementation and debugging of repeated actor-director collaboration analysis and notebook 05; focused tests and execution support; drafting section 5 of REPORT.md. |
+| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`) |
+| Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb`, parameter documentation, validation on synthetic data, and execution on the full IMDb silver dataset with exported results. |
+| OpenAI Codex | Hugo BASSAGET | Implementation and debugging of Wikipedia enrichment code and notebook 03; focused tests and execution support; drafting section 3 of REPORT.md. |
 
-
+AI assistance used for code and report drafting is disclosed in the table above.
