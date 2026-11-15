@@ -83,7 +83,7 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 
 | Tool | Used by | Tasks |
 |---|---|---|
-| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`) |
+| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`); drafting of sections 1 (data preparation) and 4 (streaming) of `REPORT.md`, from the result tables |
 | Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb`, parameter documentation, validation on synthetic data, and execution on the full IMDb silver dataset with exported results. |
 
-No AI tool was used to write the explanations or reasoning in `REPORT.md`.
+Apart from sections 1 and 4 (see above), no AI tool was used to write the explanations or reasoning in `REPORT.md`.
