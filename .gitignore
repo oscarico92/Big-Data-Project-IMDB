@@ -15,3 +15,8 @@ derby.log
 throttle.ctrl
 apicache*/
 logs/
+
+# exploration exports too large for Git (full Parquet copies are in data/exploration/)
+results/exploration/q8_multiple_role_movies.csv
+results/exploration/q8_per_person_comparison.csv
+results/exploration/q8_multitalented_people.csv

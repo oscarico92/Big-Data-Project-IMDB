@@ -1,0 +1,17 @@
+{
+  "start_year": 1980,
+  "end_year": 2025,
+  "runtime_z": 2.0,
+  "min_genre_movies": 30,
+  "success_rating": 7.0,
+  "success_votes": 1000,
+  "director_hit_rating": 8.0,
+  "director_other_rating": 6.0,
+  "director_min_votes": 100,
+  "episode_min_votes": 20,
+  "career_years": 20,
+  "career_movies": 15,
+  "early_fraction": 0.25,
+  "career_votes": 100,
+  "min_period_rated": 3
+}
