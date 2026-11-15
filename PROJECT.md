@@ -87,4 +87,3 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 | Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb`, parameter documentation, and validation on synthetic data. Execution on the full IMDb silver dataset is still pending. |
 
 No AI tool was used to write the explanations or reasoning in `REPORT.md`.
-
