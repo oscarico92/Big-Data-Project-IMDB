@@ -4,7 +4,7 @@
 
 ## 1. Data preparation
 
-Source: `notebooks/01_data_preparation.ipynb`, result tables in `results/preparation/`. The profile and the checks are computed on the bronze layer (raw IMDb files typed as Parquet, before any cleaning), on the full dataset: 7 tables, about 228 million rows in total.
+Source: `notebooks/01_data_preparation.ipynb`, result tables in `results/preparation/`. The profile and the checks are computed on the bronze layer (raw IMDb files typed as Parquet, before any cleaning), on the full dataset: 7 tables, 216,430,495 rows in total.
 
 ### 1.1 Percentage of null, missing or empty values per column
 
@@ -333,7 +333,7 @@ Source: `notebooks/04_streaming.ipynb` and `streaming/wikistream_producer.py`, r
 | 18:10 - 18:15 | 12 | 7 |
 | 18:15 - 18:20 | 14 | 13 |
 
-The first window only contains the first minute of the test. The windows after 18:10 were still open when the queries stopped: their values are the last update written, not a final value.
+The first window only contains the first minute of the test. The last watermark was 18:09:22 UTC, so the windows from 18:05 onwards (18:05 - 18:10, 18:10 - 18:15 and 18:15 - 18:20) were still open when the queries stopped: their values are the last update written, not a final value.
 
 Every complete 5-minute window contains at least 12 matching changes, so the filtering is broad enough to process multiple matching events within the test window, as required.
 
