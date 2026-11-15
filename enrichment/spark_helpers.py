@@ -23,6 +23,16 @@ def principal_candidates(principals, films):
 
 
 def choose_principals(candidates, count=3):
+    if "qid" in candidates.columns:
+        # IMDb can contain two credited IDs for the same sourced person.
+        # Such aliases must not count as two different biographies.
+        candidates = candidates.withColumn("_person_identity", F.when(
+            F.col("has_text") & F.col("qid").isNotNull(), F.concat(F.lit("wikidata:"), "qid"))
+            .otherwise(F.concat(F.lit("imdb:"), "nconst")))
+        aliases = Window.partitionBy("tconst", "_person_identity").orderBy(
+            "role_priority", F.asc_nulls_last("ordering"), "nconst")
+        candidates = (candidates.withColumn("_alias_rank", F.row_number().over(aliases))
+                      .filter("_alias_rank = 1").drop("_alias_rank", "_person_identity"))
     order = Window.partitionBy("tconst").orderBy(
         F.desc("has_text"), "role_priority", F.asc_nulls_last("ordering"), "nconst")
     return candidates.withColumn("principal_rank", F.row_number().over(order)).filter(F.col("principal_rank") <= count)

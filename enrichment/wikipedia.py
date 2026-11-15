@@ -27,13 +27,17 @@ class Collector:
         self.requests = 0
         self.cache_hits = 0
 
+    def cache_path(self, service, endpoint, params):
+        url = endpoint + "?" + urllib.parse.urlencode(sorted(params.items()))
+        key = hashlib.sha256(url.encode()).hexdigest()
+        return self.directory / service / (key + ".json")
+
     def request(self, service, endpoint, params):
         query = urllib.parse.urlencode(sorted(params.items()))
         url = endpoint + "?" + query
-        key = hashlib.sha256(url.encode()).hexdigest()
         folder = self.directory / service
         folder.mkdir(parents=True, exist_ok=True)
-        target = folder / (key + ".json")
+        target = self.cache_path(service, endpoint, params)
         if target.exists():
             self.cache_hits += 1
             return target
@@ -71,7 +75,9 @@ class Collector:
                 error = exc
             if attempt + 1 == self.attempts:
                 raise RuntimeError(f"Collection stopped after {self.attempts} attempts: {url}") from error
-            time.sleep(max(retry_after, min(60, 5 * 2 ** attempt)))
+            delay = max(retry_after, min(60, 5 * 2 ** attempt))
+            print(f"{service}: retry {attempt + 1}/{self.attempts - 1} in {delay:.0f}s ({error})", flush=True)
+            time.sleep(delay)
 
     def identities(self, ids, batch_size=100):
         """IDs must be a bounded Spark-selected cohort, never the whole IMDb table."""
@@ -89,8 +95,16 @@ class Collector:
               OPTIONAL {{ ?article <http://schema.org/about> ?item ;
                 <http://schema.org/isPartOf> <https://en.wikipedia.org/> . }}
             }}'''
-            paths.append(str(self.request("wikidata", "https://query.wikidata.org/sparql",
-                                          {"query": query, "format": "json"})))
+            endpoint = "https://query.wikidata.org/sparql"
+            params = {"query": query, "format": "json"}
+            # Keep earlier successful responses. For new requests, bind the small
+            # VALUES list before the P345 lookup and the optional sitelink join.
+            # https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/query_optimization
+            if not self.cache_path("wikidata", endpoint, params).exists():
+                query = ('PREFIX hint: <http://www.bigdata.com/queryHints#>\n' +
+                         query.replace('WHERE {', 'WHERE {\n hint:Query hint:optimizer "None" .', 1))
+                params = {"query": query, "format": "json"}
+            paths.append(str(self.request("wikidata", endpoint, params)))
             print(f"Wikidata: {min(start + batch_size, len(ids))}/{len(ids)} IDs", flush=True)
         return paths
 

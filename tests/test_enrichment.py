@@ -61,6 +61,17 @@ class SparkTests(unittest.TestCase):
                 if isinstance(statement, ast.Assign) and any(isinstance(t, ast.Name) and t.id in {"identity_schema", "page_schema"} for t in statement.targets):
                     self.spark.createDataFrame([], ast.literal_eval(statement.value))
 
+    def test_alias_imdb_ids_do_not_count_as_distinct_biographies(self):
+        candidates = self.spark.createDataFrame([
+            ("tt1", "nm1", "Q1", True, 0, 1),
+            ("tt1", "nm2", "Q1", True, 0, 2),
+            ("tt1", "nm3", "Q2", True, 0, 3),
+            ("tt1", "nm4", "Q3", True, 0, 4),
+        ], "tconst string, nconst string, qid string, has_text boolean, role_priority int, ordering int")
+        rows = choose_principals(candidates).collect()
+        self.assertEqual({r.nconst for r in rows}, {"nm1", "nm3", "nm4"})
+        self.assertEqual(len({r.qid for r in rows}), 3)
+
 
 class CollectionTests(unittest.TestCase):
     def test_successful_response_is_reused(self):
@@ -81,6 +92,35 @@ class CollectionTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     Collector(folder).request("test", "https://example.org/api", {})
             self.assertFalse(list(Path(folder).rglob("*.json")))
+
+    def test_rate_limit_retries_after_server_delay(self):
+        import io
+        import urllib.error
+        from email.message import Message
+        headers = Message()
+        headers["Retry-After"] = "12"
+        failure = urllib.error.HTTPError("https://example.org/api", 429, "Too Many Requests", headers, None)
+        with tempfile.TemporaryDirectory() as folder:
+            with patch("urllib.request.urlopen", side_effect=[failure, io.BytesIO(b'{"query":{"pages":[]}}')]) as request:
+                with patch("time.sleep") as sleep:
+                    path = Collector(folder).request("test", "https://example.org/api", {})
+            self.assertTrue(path.exists())
+            self.assertEqual(request.call_count, 2)
+            self.assertIn(unittest.mock.call(12.0), sleep.call_args_list)
+
+    def test_optimized_identity_requests_resume_from_cache(self):
+        import io
+        from urllib.parse import urlparse, parse_qs
+        with tempfile.TemporaryDirectory() as folder:
+            client = Collector(folder)
+            with patch("urllib.request.urlopen", return_value=io.BytesIO(b'{"results":{"bindings":[]}}')) as request:
+                first = client.identities(["tt0133093"])
+                second = client.identities(["tt0133093"])
+            self.assertEqual(first, second)
+            self.assertEqual(request.call_count, 1)
+            saved = json.loads(Path(first[0]).read_text())
+            query = parse_qs(urlparse(saved["request_url"]).query)["query"][0]
+            self.assertIn('hint:optimizer "None"', query)
 
 
 if __name__ == "__main__":
