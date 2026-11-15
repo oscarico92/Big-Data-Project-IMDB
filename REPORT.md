@@ -1,6 +1,6 @@
 # IMDb project report (group gr-02)
 
-> Structure only. Each section is written by its owner (see CONTRIBUTING.md). Results tables come from the notebooks; the methodological explanations are written by us, without AI tools.
+> Sections follow the team responsibilities in CONTRIBUTING.md. Result tables come from the notebooks. AI assistance is disclosed in PROJECT.md.
 
 ## 1. Data preparation
 
