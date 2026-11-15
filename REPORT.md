@@ -52,7 +52,7 @@ Across 1980–2025, films with at least one top-three genre average **49.53% of 
 - 183 directors in the result.
 - Example: James McTeigue — *V for Vendetta* rated 8.1; other eligible rated films average 5.975.
 - [Director table](results/exploration/q4_directors.csv).
-- The five entries with the most votes on their qualifying high-rated film are James McTeigue (*V for Vendetta*), Richard Marquand (*Return of the Jedi*), M. Night Shyamalan (*The Sixth Sense*), Richard Kelly (*Donnie Darko*) and Frank Miller and Robert Rodriguez (*Sin City*, co-directed).
+- The five qualifying high-rated films with the most votes are associated with James McTeigue (*V for Vendetta*), Richard Marquand (*Return of the Jedi*), M. Night Shyamalan (*The Sixth Sense*), Richard Kelly (*Donnie Darko*) and Frank Miller and Robert Rodriguez (*Sin City*, co-directed).
 
 ### 2.5 TV series whose worst episode is in the last season and best episode in the first two
 
