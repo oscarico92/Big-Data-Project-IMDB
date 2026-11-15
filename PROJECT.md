@@ -4,9 +4,9 @@
 
 | Name | Email | GitHub |
 |---|---|---|
-| Oscar SCHWARTZ | TODO | oscarico92 |
-| Mathis LEITAO | TODO | Latru3lle |
-| Hugo BASSAGET | TODO | Bassaget |
+| Oscar SCHWARTZ | oscar.schwartz@edu.ece.fr | oscarico92 |
+| Mathis LEITAO | mathis.leitao@edu.ece.fr | Latru3lle |
+| Hugo BASSAGET | hugo.bassaget@edu.ece.fr | Bassaget |
 
 ## Requirements
 
@@ -84,7 +84,7 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 | Tool | Used by | Tasks |
 |---|---|---|
 | OpenAI Codex | Hugo BASSAGET | Implementation and debugging of repeated actor-director collaboration analysis and notebook 05; focused tests and execution support; drafting section 5 of REPORT.md. |
-| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`) |
+| Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton: Docker Compose file, download and Parquet conversion jobs (`jobs/`), notebook templates; code of the data preparation notebook and of the streaming pipeline (`streaming/`, `notebooks/04_streaming.ipynb`); first draft of sections 1 and 4 of `REPORT.md`, whose methodological explanations were then rewritten by Oscar in his own words |
 | Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb`, parameter documentation, validation on synthetic data, and execution on the full IMDb silver dataset with exported results. |
 | OpenAI Codex | Hugo BASSAGET | Implementation and debugging of Wikipedia enrichment code and notebook 03; focused tests and execution support; drafting section 3 of REPORT.md. |
 
