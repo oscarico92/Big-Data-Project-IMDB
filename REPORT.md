@@ -1,6 +1,6 @@
 # IMDb project report (group gr-02)
 
-> Each section is written by its owner (see CONTRIBUTING.md). Results tables come from the notebooks. The use of AI tools for this report is declared in PROJECT.md.
+> Each section is written by its owner (see CONTRIBUTING.md). Results tables come from the notebooks.
 
 ## 1. Data preparation
 
