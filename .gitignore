@@ -20,3 +20,6 @@ logs/
 results/exploration/q8_multiple_role_movies.csv
 results/exploration/q8_per_person_comparison.csv
 results/exploration/q8_multitalented_people.csv
+
+# The genre-membership export repeats synopsis text and can be regenerated locally.
+results/enrichment/enriched_film_genres.csv

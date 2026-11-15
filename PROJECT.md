@@ -87,3 +87,4 @@ Every notebook uses `jobs/common.py` (`get_spark()`, `read_bronze()`, `read_silv
 | Claude (Anthropic) | Oscar SCHWARTZ | Project skeleton, notebook templates; code of the data preparation notebook |
 | Codex (OpenAI) | Mathis LEITAO | Implementation of the eight PySpark exploration queries in `notebooks/02_data_exploration.ipynb'|
 
+
