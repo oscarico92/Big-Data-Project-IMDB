@@ -130,7 +130,7 @@ Missing information is retained in the output with a code-generated note. A miss
 
 The detailed [film coverage table](results/enrichment/film_coverage.csv) records the number of sourced principals for each film and whether it satisfies both requirements. [Coverage by year and genre](results/enrichment/coverage_by_year_genre.csv) includes zero-coverage combinations. The [selected films](results/enrichment/selected_films.csv) retain the ranking and IMDb identifiers, and the [lineage sample](results/enrichment/lineage_sample.csv) makes source matching inspectable.
 
-The full local CSV exports are `film_synopses.csv`, `principal_biographies.csv` and `enriched_film_genres.csv` in `results/enrichment/`. They are excluded from Git because they contain the complete external texts. Compact result tables, 20 sourced synopsis examples, 60 sourced biography examples and executed notebook outputs are versioned. Raw API responses and full Spark tables remain under ignored `data/enrichment/` paths.
+The complete [film synopses](results/enrichment/film_synopses.csv) and [principal biographies](results/enrichment/principal_biographies.csv) are versioned, including missing-source rows and the source, revision, license and attribution fields. Compact coverage tables, 20 synopsis examples, 60 biography examples and executed notebook outputs are also included. The local `enriched_film_genres.csv` export repeats synopsis text for each genre membership and remains excluded from Git; the notebook regenerates it. Raw API responses and full Spark tables remain under ignored `data/enrichment/` paths.
 
 ### Methodological explanation
 

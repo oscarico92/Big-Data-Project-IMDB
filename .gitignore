@@ -21,7 +21,5 @@ results/exploration/q8_multiple_role_movies.csv
 results/exploration/q8_per_person_comparison.csv
 results/exploration/q8_multitalented_people.csv
 
-# Full external text exports stay local; coverage and lineage samples are versioned.
-results/enrichment/film_synopses.csv
-results/enrichment/principal_biographies.csv
+# The genre-membership export repeats synopsis text and can be regenerated locally.
 results/enrichment/enriched_film_genres.csv
