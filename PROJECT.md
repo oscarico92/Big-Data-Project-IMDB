@@ -4,9 +4,9 @@
 
 | Name | Email | GitHub |
 |---|---|---|
-| Oscar SCHWARTZ | TODO | oscarico92 |
-| Mathis LEITAO | TODO | Latru3lle |
-| Hugo BASSAGET | TODO | Bassaget |
+| Oscar SCHWARTZ | oscar.schwartz@edu.ece.fr | oscarico92 |
+| Mathis LEITAO | mathis.leitao@edu.ece.fr | Latru3lle |
+| Hugo BASSAGET | hugo.bassaget@edu.ece.fr | Bassaget |
 
 ## Requirements
 
