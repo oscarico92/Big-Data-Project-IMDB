@@ -73,7 +73,7 @@ Across 1980–2025, films with at least one top-three genre average **49.53% of 
 
 - 4,638 selected actors and actresses; median early-minus-later mean-rating difference 0.66 point within this group.
 - [Career table](results/exploration/q7_early_peak_actors.csv); [peak-film evidence](results/exploration/q7_peak_movies.csv).
-- The five largest early-minus-later mean-rating differences in the selected group are Saroj Khanal (4.18), Oya Aydogan (3.44), Mahesh (2.99), Jean-Claude La Marre (2.82) and Kristine DeBell (2.77). This ranking is within the selected group; the proportion of all careers meeting the 20-year/15-film eligibility rule is not available in the versioned outputs.
+- The five largest early-minus-later mean-rating differences in the selected group are Saroj Khanal (4.18), Oya Aydogan (3.44), Mahesh (2.99), Jean-Claude La Marre (2.82) and Kristine DeBell (2.77). This ranking is within the selected group. In a separate local IMDb snapshot, 4,629 of 28,491 careers meeting the 20-year/15-film eligibility rule were selected (16.25%). The published CSV selects 4,638 people; its exact eligible-career denominator is not available in the versioned outputs, so the local percentage is indicative rather than an exact percentage for the published snapshot.
 
 ### 2.8 Multi-talented film professionals
 
