@@ -33,6 +33,8 @@ Results from the full silver-layer run of [notebook 02](notebooks/02_data_explor
 
 Both rankings contain three genres for each of the 46 years. [Votes ranking](results/exploration/q2_top_three_by_votes.csv); [film-count ranking](results/exploration/q2_top_three_by_movie_count.csv); [all genres](results/exploration/q2_all_genres.csv).
 
+Across the 46 vote rankings, Drama appears in the top three every year, followed by Comedy (34 years), Action (29) and Adventure (16). The two years in the table illustrate the ranking; the linked CSV gives all 46.
+
 ### 2.3 Top three genres compared to the other genres
 
 | 2025 film group | Films | Share of films | Share of votes |
@@ -43,17 +45,21 @@ Both rankings contain three genres for each of the 46 years. [Votes ranking](res
 
 [Disjoint film comparison](results/exploration/q3_disjoint_movie_comparison.csv); [genre-membership comparison](results/exploration/q3_genre_comparison.csv).
 
+Across 1980–2025, films with at least one top-three genre average **49.53% of films** but **85.66% of votes** within each year. These are unweighted averages of the 46 yearly percentages, so each release year contributes equally to this summary.
+
 ### 2.4 Directors with exactly one movie rated >= 8.0 and other movies averaging <= 6.0
 
 - 183 directors in the result.
 - Example: James McTeigue — *V for Vendetta* rated 8.1; other eligible rated films average 5.975.
 - [Director table](results/exploration/q4_directors.csv).
+- The five entries with the most votes on their qualifying high-rated film are James McTeigue (*V for Vendetta*), Richard Marquand (*Return of the Jedi*), M. Night Shyamalan (*The Sixth Sense*), Richard Kelly (*Donnie Darko*) and Frank Miller (*Sin City*).
 
 ### 2.5 TV series whose worst episode is in the last season and best episode in the first two
 
 - 412 qualifying series.
 - Example: *Two and a Half Men* has 12 full seasons in the result, with best eligible episode rating 8.7 and worst 3.6.
 - [Series table](results/exploration/q5_series.csv); [episode evidence](results/exploration/q5_episode_evidence.csv).
+- By number of eligible rated episodes, the first five qualifying series are *The Beverly Hillbillies*, *Two and a Half Men*, *Murphy Brown*, *Bewitched* and *The Virginian*.
 
 ### 2.6 Actors and actresses successful in several languages
 
@@ -61,16 +67,20 @@ Both rankings contain three genres for each of the 46 years. [Votes ranking](res
 - 4,623 candidates have successful films in at least two estimated languages; 867 have at least three.
 - [Coverage](results/exploration/q6_language_coverage.csv); [two-language candidates](results/exploration/q6_candidates_two_or_more_languages.csv); [three-language candidates](results/exploration/q6_candidates_three_or_more_languages.csv); [film estimates](results/exploration/q6_movie_language_estimates.csv); [evidence](results/exploration/q6_language_evidence.csv).
 
+**These lists are unvalidated candidates, not confirmed multilingual careers.** Matching a romanized original title can select a foreign-release AKA rather than an AKA from the film's home country. For example, the evidence assigns *In the Mood for Love* to Korean and *Hero* to English for Maggie Cheung; several Japanese films involving Toshirō Mifune receive European language labels. Of the 12,412 film estimates, 959 have tied leading languages and 2,537 rest on only one supporting AKA. Requiring one clear winner, at least two supporting AKAs and complete agreement leaves 2,587 films. The candidate counts above must therefore not be interpreted as verified original spoken languages.
+
 ### 2.7 Actors and actresses whose popularity peaked early
 
 - 4,638 selected actors and actresses; median early-minus-later mean-rating difference 0.66 point within this group.
 - [Career table](results/exploration/q7_early_peak_actors.csv); [peak-film evidence](results/exploration/q7_peak_movies.csv).
+- The five largest early-minus-later mean-rating differences in the selected group are Saroj Khanal (4.18), Oya Aydogan (3.44), Mahesh (2.99), Jean-Claude La Marre (2.82) and Kristine DeBell (2.77). This ranking is within the selected group; the proportion of all careers meeting the 20-year/15-film eligibility rule is not available in the versioned outputs.
 
 ### 2.8 Multi-talented film professionals
 
 - 59,577 professionals have rated films in both the single-role and multiple-role groups.
 - Mean person-level rating difference (multiple minus single): +0.059 point; median: +0.033 point.
 - [Paired differences](results/exploration/q8_paired_differences.csv); [overall summary](results/exploration/q8_overall_comparison.csv).
+- The mean and median differences are both close to zero on IMDb's ten-point rating scale. In this comparison, taking multiple roles shows no substantial average rating advantage; the result is descriptive and does not establish an effect of taking additional roles.
 
 ### Methodological explanation
 
